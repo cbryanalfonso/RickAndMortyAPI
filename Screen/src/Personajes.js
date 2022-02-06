@@ -62,13 +62,14 @@ const styles = StyleSheet.create({
     },
     header: {
         //backgroundColor: 'yellow',
+        //DESCARGAR EL RESPONSIVE DE PANTALLA PARA QUE DE ESTA MANERA SE TENGAN TODOS LAS PANTALLAS
         flex: 0.15,
         padding: 10,
         justifyContent: "center",
         alignItems: "center"
     },
     contenido: {
-        backgroundColor: 'red',
+        //backgroundColor: 'red',
         flex: 0.75,
         margin: 5,
         borderWidth: 1,

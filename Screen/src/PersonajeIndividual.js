@@ -7,13 +7,19 @@ export default function PersonajeIndividual({ navigation, route }) {
     // sE RECIBEN LOS PARAMETROS DE LA RUTA, PARA QUE DE ESTA MANERA SE PUEDAN CONSULTAR LOS DATOS EN ESTA NUEVA PANTALLA.
     const { item } = route.params;
     const [imageP, setImageP] = useState('https://hbomax-images.warnermediacdn.com/images/GXkRjxwjR68PDwwEAABKJ/tileburnedin?size=1280x720&partner=hbomaxcom&language=es-419&v=21008d2b512da66cd8ce00fe95b7ef86&host=art-gallery-latam.api.hbo.com&w=1280')
+    const [data, setData] = useState([])
+    const [origin, setOrigin] = useState('')
+    const [locationn, setLocationn] = useState('')
     useEffect(() => {
         //console.log('SOY YO, ESTOY DENTRO JAJAJAJ',item);
         fetch(item)
             .then((value) => value.json())
             .then(value => {
-                console.log(value.image);
+                //console.log(value.origin.name);
                 setImageP(value.image)
+                setData(value)
+                setOrigin(value.origin.name)
+                setLocationn(value.location.name)
             })
     })
     return (
@@ -30,10 +36,25 @@ export default function PersonajeIndividual({ navigation, route }) {
                     />
                 </View>
                 <View style={styles.infoPersonaje}>
-                    <Text style={styles.tituloNombre}>Nombre del personaje</Text>
+                    <Text style={styles.tituloNombre}>{data.name}</Text>
                     <View style={{ width: wp('80%'), height: wp('75%'), alignItems: "center", justifyContent: "center", borderWidth: 5, marginTop: 10,borderColor: '#3498db' }}>
                         <Image source={{ uri: imageP }} style={{ width: wp('90%'), height: wp('70%'),  borderRadius: 10 }} resizeMode="contain" />
-
+                    </View>
+                    <View style={{margin: 20,  flexDirection: "row", }}>
+                        <View style={{flex: 1}}>
+                            <Text style={styles.txtInformacion}>Status</Text>
+                            <Text style={styles.txtInformacion}>Species</Text>
+                            <Text style={styles.txtInformacion}>Gender</Text>
+                            <Text style={styles.txtInformacion}>Origin</Text>
+                            <Text style={styles.txtInformacion}>Location</Text>
+                        </View>
+                        <View style={{flex: 1}}>
+                            <Text style={styles.txtInfoResul}> {data.status}</Text>
+                            <Text style={styles.txtInfoResul}> {data.species}</Text>
+                            <Text style={styles.txtInfoResul}> {data.gender}</Text>
+                            <Text style={styles.txtInfoResul}> {origin}</Text>
+                            <Text style={styles.txtInfoResul}> {locationn}</Text>
+                        </View>
                     </View>
                 </View>
 
@@ -66,5 +87,16 @@ const styles = StyleSheet.create({
         fontSize: 22,
         color: '#3498db',
         fontWeight: 'bold'
+    },
+    txtInformacion:{
+        marginVertical: 5, 
+        fontSize: 15, 
+        color: '#3498db', 
+        fontWeight: "bold"
+    },
+    txtInfoResul:{
+        marginVertical: 5, 
+        fontSize: 15, 
+        color: '#3498db', 
     }
 })

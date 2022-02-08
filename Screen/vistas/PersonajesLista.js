@@ -1,13 +1,14 @@
-import React, {useEffect, useState} from 'react';
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {Icon} from 'react-native-elements';
+import React, { useEffect, useState } from 'react';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Icon } from 'react-native-elements';
 
-export default function PersonajesLista({item}) {
+export default function PersonajesLista({ item, navigation }) {
   const [vivo, setVivo] = useState(false);
   const [desconocido, setDesconocido] = useState(false);
   const [data, setData] = useState([]);
+  const [placeSeen, setPlaceSeen] = useState('')
   useEffect(() => {
-   // console.log(item.episode[0]);
+    //console.log(item.url);
     if (item.status === 'Alive') {
       setVivo(true);
     } else if (item.status === 'Dead') {
@@ -15,11 +16,12 @@ export default function PersonajesLista({item}) {
     } else if (item.status === 'unknown') {
       setDesconocido(true);
     }
-      fetch(item.episode[0])
+    fetch(item.episode[0])
       .then(value => value.json())
       .then(value => {
-        console.log(value.name);
-      });  
+        //console.log(value.name);
+        setPlaceSeen(value.name)
+      });
   }, []);
 
   return (
@@ -30,10 +32,16 @@ export default function PersonajesLista({item}) {
         borderRadius: 25,
         flexDirection: 'row',
         margin: 10,
-      }}>
-      <View style={{flex: 0.8}}>
+      }}
+      onPress={() => {
+          //console.log(item.url)
+          //PASANDO PARAMETOS A PERSONAJE INDIVIUDAL, PARA QUE DE ESTA MANERA SE PUEDA CONSULTAR DE FORMA DETALLLADA AL PERSONAJE.
+        navigation.navigate('PersonajeIndividual',{item: item.url})
+      }}
+    >
+      <View style={{ flex: 0.8 }}>
         <Image
-          source={{uri: item.image}}
+          source={{ uri: item.image }}
           style={{
             width: 160,
             height: 160,
@@ -43,32 +51,32 @@ export default function PersonajesLista({item}) {
           resizeMode="contain"
         />
       </View>
-      <View style={{flex: 1.2, padding: 10, paddingLeft: 30}}>
-        <TouchableOpacity>
-          <Text style={[styles.txtIcono, {fontSize: 15}]}>{item.name}</Text>
+      <View style={{ flex: 1.2, padding: 10, paddingLeft: 30 }}>
+        <TouchableOpacity onPress={() => console.log(item.url)}>
+          <Text style={[styles.txtIcono, { fontSize: 15 }]}>{item.name}</Text>
         </TouchableOpacity>
-        <View style={{flexDirection: 'row', marginVertical: 10, alignItems: 'center'}}>
+        <View style={{ flexDirection: 'row', marginVertical: 10, alignItems: 'center' }}>
           <Icon
             name={
               desconocido
                 ? 'emoticon-confused'
                 : vivo
-                ? 'emoticon-happy'
-                : 'emoticon-dead'
+                  ? 'emoticon-happy'
+                  : 'emoticon-dead'
             }
             type="material-community"
             size={14}
             color={desconocido ? '#7f8c8d' : vivo ? '#27ae60' : '#c0392b'}
           />
-          <Text style={[styles.txtIcono, {fontSize: 12}]}>  {item.status} - </Text>
-          <Text style={[styles.txtIcono, {fontSize: 12}]}> {item.species}</Text>
+          <Text style={[styles.txtIcono, { fontSize: 12 }]}>  {item.status} - </Text>
+          <Text style={[styles.txtIcono, { fontSize: 12 }]}> {item.species}</Text>
         </View>
-        <Text style={[styles.txtIcono, { color: '#95a5a6', fontSize: 14}]}>Last Know location</Text>
+        <Text style={[styles.txtIcono, { color: '#95a5a6', fontSize: 14 }]}>Last Know location</Text>
         <TouchableOpacity>
-          <Text style={[styles.txtIcono, {fontSize: 13}]}>{item.location.name}</Text>
+          <Text style={[styles.txtIcono, { fontSize: 13 }]}>{item.location.name}</Text>
         </TouchableOpacity>
-        <Text style={[styles.txtIcono, { color: '#95a5a6', fontSize: 14, paddingTop: 7}]} >First place seen</Text>
-        <Text style={[styles.txtIcono, {fontSize: 13}]}>Lugar</Text>
+        <Text style={[styles.txtIcono, { color: '#95a5a6', fontSize: 14, paddingTop: 7 }]} >First seen in</Text>
+        <Text style={[styles.txtIcono, { fontSize: 13 }]}>{placeSeen}</Text>
       </View>
     </TouchableOpacity>
   );

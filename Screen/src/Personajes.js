@@ -3,23 +3,24 @@ import { FlatList, Image, StyleSheet, Text, View } from "react-native";
 import { Icon } from "react-native-elements";
 import PersonajesLista from "../vistas/PersonajesLista";
 
-export default function Personajes() {
+export default function Personajes({navigation}) {
     const [data, setData] = useState([])
     const [URL, setURL] = useState('https://rickandmortyapi.com/api/character')
+    const [URLNEXT, setURLNEXT] = useState('')
 
     useEffect(() => {
         fetch(URL)
             .then((value) => value.json())
             .then(value => {
-                //console.log(value.results[0].name);
+               // console.log(value.info.next);
+                setURLNEXT(value.info)
                 setData(value.results)
-
             })
         console.log("Se esta imprimiendo al inicio del renderizado de la aplicación.");
-    }, [])
+    }, [URL])
 
     const renderItem = ({ item }) => (
-        <PersonajesLista item={item} />
+        <PersonajesLista navigation={navigation} item={item} />
     )
 
 
@@ -41,14 +42,18 @@ export default function Personajes() {
                     type='material-community'
                     //color='#517fa4'
                     color='#3498db'
-                    size={40}
-                    onPress={() => console.log("Anterior")}
+                    size={URLNEXT.prev ? 40 : 0}
+                    onPress={() => 
+                        setURL(URLNEXT.prev)
+                    }
                 />
                 <Icon name='chevron-right-circle'
                     type='material-community'
                     color='#3498db'
                     size={40}
-                    onPress={() => console.log("Siguiente")}
+                    onPress={() => 
+                        setURL(URLNEXT.next)
+                    }
                 />
 
             </View>

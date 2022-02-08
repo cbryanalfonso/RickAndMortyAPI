@@ -110,3 +110,27 @@ const styles = StyleSheet.create({
 });
 
 export default App;
+/****
+ * 
+ * 
+ * se agrega muycafksjdhdv
+ * sfsdfsdfdsf
+ * dsfsdf
+ * sdfsd
+ * fsd
+ * f
+ * sdf
+ * sd
+ * f
+ * sd
+ * f
+ * dsf
+ * sd
+ * f
+ * sd
+ * f
+ * sdf
+ * ds
+ * f
+ * d
+ * f */

@@ -40,7 +40,7 @@ export default function PersonajeIndividual({navigation, route}) {
             setVivo(false);
           } else if (value.status === 'unknown') {
             setDesconocido(true);
-          }
+          }//dsds
       });
   });
   return (

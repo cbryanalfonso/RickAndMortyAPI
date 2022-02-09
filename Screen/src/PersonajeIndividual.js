@@ -33,8 +33,8 @@ export default function PersonajeIndividual({ navigation, route }) {
   const [desconocido, setDesconocido] = useState(false);
   const [genero, setGenero] = useState(false);
   const [episodios, setEpisodios] = useState([]);
-  
-  
+
+
 
   useEffect(() => {
     //console.log('SOY YO, ESTOY DENTRO JAJAJAJ',item);
@@ -61,29 +61,31 @@ export default function PersonajeIndividual({ navigation, route }) {
           setGenero(false);
         }
       });
-      /* fetch(episodios[0])
-      .then((value) => value.json())
-      .then(value=>{
-        console.log('LOs episodios son ...',value);
-      }) */
+    /* fetch(episodios[0])
+    .then((value) => value.json())
+    .then(value=>{
+      console.log('LOs episodios son ...',value);
+    }) */
   }, []);
-  
+
   /* 
 const [tt, setTt] = useState([]) */
-  /* function episodiosPersonaje() {
+  function episodiosPersonaje() {
     return episodios.map(function (news, i) {
-      
+      //let nombre = ''
+      //console.log(i);
       fetch(episodios[i])
-      .then((value) => value.json())
-      .then(value=>{
-        console.log(i)
-        //console.log('El valor es ds ', value);
-        //setTt(value)
-        news= value
-      })
+        .then((value) => value.json())
+        .then(value => {
+          console.log(i)
+          //console.log('El valor es ds ', value);
+          //setTt(value)
+          //news = value.name
+          //nombre= value.name
+        })
       return (
-         */
-        {/* <TouchableOpacity
+
+        <TouchableOpacity
           key={i}
           style={{
             backgroundColor: '#2c3e50',
@@ -92,26 +94,26 @@ const [tt, setTt] = useState([]) */
             flexDirection: 'row',
             margin: 10,
           }}
-          onPress={() => { console.log(news.name); }}
+          onPress={() => { console.log(nombre); }}
         >
           <View style={{ flex: 1 }}>
-            <Text style={[styles.txtIcono, {  fontSize: 14, padding: 30 }]}>
-              {news.name}
+            <Text style={[styles.txtIcono, { fontSize: 14, padding: 30 }]}>
+              
             </Text>
- */}
-            {/* <Text
+
+            <Text
               style={[
                 styles.txtIcono,
                 { color: '#95a5a6', fontSize: 14, paddingTop: 7 },
               ]}>
               {news.episode}
-            </Text> */}
-          /* </View>
+            </Text>
+          </View>
         </TouchableOpacity>
       );
-     // console.log(i)
+      // console.log(i)
     });
-  } */
+  }
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -219,14 +221,14 @@ const [tt, setTt] = useState([]) */
             alignItems: 'center',
             padding: 10,
           }}>
-            <Text style={[styles.tituloNombre, {color: '#2ecc71'}]}> Episodes </Text>
+          <Text style={[styles.tituloNombre, { color: '#2ecc71' }]}> Episodes </Text>
           {/* <FlatList
           horizontal={true}
             data={data}
             renderItem={renderItem}
             keyExtractor={id => id.episode}
           /> */}
-          
+  {episodiosPersonaje()}
         </View>
       </ScrollView>
     </SafeAreaView>

@@ -27,7 +27,7 @@ export default function Personajes({navigation}) {
     return (
         <View style={styles.container}>
             <View style={styles.header}>
-                <Image source={require("../assets/rickandmortylogo.png")} style={{ width: "80%", height: "80%" }} />
+                <Image source={require("../assets/rickandmortylogo.png")} style={{ width: "90%", height: "90%" }} resizeMode='contain' />
             </View>
             <View style={styles.contenido}>
                 <FlatList
@@ -69,17 +69,18 @@ const styles = StyleSheet.create({
         //backgroundColor: 'yellow',
         //DESCARGAR EL RESPONSIVE DE PANTALLA PARA QUE DE ESTA MANERA SE TENGAN TODOS LAS PANTALLAS
         flex: 0.15,
-        padding: 10,
+        //padding: 10,
         justifyContent: "center",
         alignItems: "center"
     },
     contenido: {
         //backgroundColor: 'red',
-        flex: 0.75,
-        margin: 5,
-        borderWidth: 1,
-        borderRadius: 20,
-        borderColor: '#3498db'
+        flex: 0.79,
+        margin: 10,
+        /* borderWidth: 1,
+        borderRadius: 15,
+        borderColor: '#3498db', */
+        paddingVertical: 10,
     },
     botonesNext: {
         //backgroundColor: 'yellow', 

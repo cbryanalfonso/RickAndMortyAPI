@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Icon } from 'react-native-elements';
-
+import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen';
 export default function PersonajesLista({ item, navigation }) {
   const [vivo, setVivo] = useState(false);
   const [desconocido, setDesconocido] = useState(false);
@@ -29,7 +29,7 @@ export default function PersonajesLista({ item, navigation }) {
       style={{
         backgroundColor: '#2c3e50',
         flex: 1,
-        borderRadius: 25,
+        //borderRadius: 25,
         flexDirection: 'row',
         margin: 10,
       }}
@@ -39,19 +39,19 @@ export default function PersonajesLista({ item, navigation }) {
         navigation.navigate('PersonajeIndividual',{item: item.url})
       }}
     >
-      <View style={{ flex: 0.8 }}>
+      <View style={{ flex: 1, backgroundColor: 'white' }}>
         <Image
           source={{ uri: item.image }}
           style={{
-            width: 160,
-            height: 160,
-            borderTopLeftRadius: 20,
-            borderBottomLeftRadius: 20,
+            width: hp(22),
+            height: hp(22),
+            borderTopLeftRadius: 10,
+            borderBottomLeftRadius: 10,
           }}
           resizeMode="contain"
         />
       </View>
-      <View style={{ flex: 1.2, padding: 10, paddingLeft: 30 }}>
+      <View style={{ flex: 1, padding: 10, paddingLeft: 17 }}>
         <TouchableOpacity onPress={() => console.log(item.url)}>
           <Text style={[styles.txtIcono, { fontSize: 15 }]}>{item.name}</Text>
         </TouchableOpacity>

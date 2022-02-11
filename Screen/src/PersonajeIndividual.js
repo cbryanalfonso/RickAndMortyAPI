@@ -14,7 +14,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import Episodios from '../vistas/Episodios';
+import EpisodiosPersonajes from '../vistas/EpisodiosPersonajes';
 
 
 
@@ -44,6 +44,7 @@ export default function PersonajeIndividual({ navigation, route }) {
         //console.log(value);
         setImageP(value.image);
         setData(value);
+        //console.log(value.episode);
         setOrigin(value.origin.name);
         setLocationn(value.location.name);
         setEpisodios(value.episode);
@@ -218,7 +219,7 @@ const [tt, setTt] = useState([]) */
             backgroundColor: '#2980b9',
             borderTopLeftRadius: 20,
             borderTopRightRadius: 20,
-            alignItems: 'center',
+            //alignItems: 'center',
             padding: 10,
           }}>
           <Text style={[styles.tituloNombre, { color: '#2ecc71' }]}> Episodes </Text>
@@ -228,7 +229,20 @@ const [tt, setTt] = useState([]) */
             renderItem={renderItem}
             keyExtractor={id => id.episode}
           /> */}
-  {episodiosPersonaje()}
+         <FlatList
+          data={episodios}
+          keyExtractor={item => item.id}
+          renderItem={
+            ({ item, index }) => (
+              <EpisodiosPersonajes
+                  item={item}
+                  navigation={navigation}
+                  //select={item.select}
+                  //onPress={() => this.changeSelect(index, item.select)}
+              />)
+          }
+         />
+  {/* {episodiosPersonaje()} */}
         </View>
       </ScrollView>
     </SafeAreaView>

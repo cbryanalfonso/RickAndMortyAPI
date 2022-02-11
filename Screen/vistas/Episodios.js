@@ -1,10 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 export default function Episodios({ navigation, item }) {
+  const [character, setCharacter] = useState([])
   useEffect(() => {
     //console.log("si entramos jejeje");
-    console.log(item);
+    //console.log('Yo soy lo que vengo de episodios general ...',item);
+    //console.log(item.characters);
+    setCharacter(item.characters)
   }, []);
   return (
     <>
@@ -18,7 +21,8 @@ export default function Episodios({ navigation, item }) {
         }}
         onPress={() => {
           //console.log(item.url)
-
+          //console.log('Yo soy lo que vengo de episodios general ...',item);
+          navigation.navigate('Residents',{residen: character, episodio: item})
         }}>
         <View style={{ flex: 1, padding: 10, paddingLeft: 17 }}>
           <Text style={[styles.txtIcono, { fontSize: 14 }]}>

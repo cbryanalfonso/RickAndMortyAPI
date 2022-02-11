@@ -10,7 +10,7 @@ export default function Location({navigation}){
         fetch(URL)
             .then((value) => value.json())
             .then(value => {
-                console.log(value.results);
+                //console.log(value.results);
                 setURLNEXT(value.info)
                 setData(value.results)
             })

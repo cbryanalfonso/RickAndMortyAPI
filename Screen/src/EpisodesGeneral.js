@@ -15,7 +15,7 @@ export default function EpisodesGeneral({ navigation }) {
                 setURLNEXT(value.info)
                 setData(value.results)
             })
-    }, [])
+    }, [URL])
 
     const renderItem = ({ item }) => (
         <Episodios navigation={navigation} item={item} />
@@ -30,7 +30,7 @@ export default function EpisodesGeneral({ navigation }) {
                     resizeMode="contain"
                 />
             </View>
-            <View style={{ flex: 0.7,  marginBottom: 10 }}>
+            <View style={{ flex: 0.7, marginBottom: 10 }}>
                 <FlatList
                     data={data}
                     renderItem={renderItem}
@@ -38,9 +38,9 @@ export default function EpisodesGeneral({ navigation }) {
                 />
 
             </View>
-            <View style={{ flex: 0.1, backgroundColor: 'yellow' }}>
-{// corregir algunos eerores con los iconos de los botones.
-}
+            <View style={styles.botonesNext}>
+                {// corregir algunos eerores con los iconos de los botones.
+                }
                 <Icon name='chevron-left-circle'
                     type='material-community'
                     //color='#517fa4'
@@ -70,4 +70,15 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
+    botonesNext: {
+        //backgroundColor: 'yellow', 
+        flex: 0.1,
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+        margin: 5,
+        borderWidth: 1,
+        borderRadius: 20,
+        borderColor: '#3498db'
+    }
 });

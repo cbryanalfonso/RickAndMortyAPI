@@ -8,7 +8,8 @@ export default function PersonajesLista({ item, navigation }) {
   const [data, setData] = useState([]);
   const [placeSeen, setPlaceSeen] = useState('')
   useEffect(() => {
-    //console.log(item.url);
+    //console.log('ESTOY DENTRO DE LA PESTAÑA RESIDENTES AMIGOS MIOS JAJAJA....');
+    //console.log(item);
     if (item.status === 'Alive') {
       setVivo(true);
     } else if (item.status === 'Dead') {
@@ -34,7 +35,7 @@ export default function PersonajesLista({ item, navigation }) {
         margin: 10,
       }}
       onPress={() => {
-          //console.log(item.url)
+          //console.log(item.url) 
           //PASANDO PARAMETOS A PERSONAJE INDIVIUDAL, PARA QUE DE ESTA MANERA SE PUEDA CONSULTAR DE FORMA DETALLLADA AL PERSONAJE.
         navigation.navigate('PersonajeIndividual',{item: item.url})
       }}

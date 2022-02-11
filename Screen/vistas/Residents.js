@@ -11,8 +11,8 @@ export default function Residents({ navigation, route }) {
     //const [character, setCharacter] = useState([])
     const [ver, setVer] = useState(false)
     useEffect(() => {
-        console.log(episodio);
-        console.log('->', residen);
+        //console.log(episodio);
+        //console.log('->', residen);
         setResidents(residen)
     }, [])
 
@@ -33,7 +33,7 @@ export default function Residents({ navigation, route }) {
                 <Image source={require("../assets/rickandmortylogo.png")} style={{ width: "80%", height: "80%" }} resizeMode='contain' />
             </View>
             <View style={styles.botonesNext}>
-                <Text style={{color: 'black'}}>{episodio.episode}</Text>
+                <Text style={{color: 'black'}}>{episodio.episode ? episodio.episode : episodio.dimension}</Text>
                 <Text style={{color: 'black'}}>{episodio.name}</Text>
             </View>
             <View style={styles.contenido}>

@@ -4,17 +4,8 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 export default function LocationFlatList({ navigation, item }) {
     const [residents, setResidents] = useState([])
   useEffect(() => {
-    //console.log("si entramos jejeje");
-    //console.log(item.id);
-    //console.log("SOMOS LOS RESIDENTES  ",(item.residents));
     setResidents(item.residents)
   }, []);
-  /* useEffect(()=>{
-      //console.log('Veamos quien entra primero');
-      residents.map((x)=>{
-          console.log(x);
-      })
-  },[]) */
   return (
     <>
       <TouchableOpacity
@@ -26,7 +17,8 @@ export default function LocationFlatList({ navigation, item }) {
           margin: 10,
         }}
         onPress={() => {
-          navigation.navigate('Residents', { residen: residents })
+          navigation.navigate('Residents', { residen: residents ,episodio: item })
+         //console.log(residents);
 
         }}>
         <View style={{ flex: 1, padding: 10, paddingLeft: 17 }}>

@@ -37,7 +37,7 @@ export default function PersonajeIndividual({ navigation, route }) {
 
 
   useEffect(() => {
-    //console.log('SOY YO, ESTOY DENTRO JAJAJAJ',item);
+    console.log('SOY YO, ESTOY DENTRO JAJAJAJ', item);
     fetch(item)
       .then(value => value.json())
       .then(value => {
@@ -61,7 +61,7 @@ export default function PersonajeIndividual({ navigation, route }) {
         } else if (value.gender === 'Female') {
           setGenero(false);
         }
-      });
+      }, []);
     /* fetch(episodios[0])
     .then((value) => value.json())
     .then(value=>{
@@ -71,63 +71,33 @@ export default function PersonajeIndividual({ navigation, route }) {
 
   /* 
 const [tt, setTt] = useState([]) */
-  function episodiosPersonaje() {
-    return episodios.map(function (news, i) {
-      //let nombre = ''
-      //console.log(i);
-      fetch(episodios[i])
-        .then((value) => value.json())
-        .then(value => {
-          console.log(i)
-          //console.log('El valor es ds ', value);
-          //setTt(value)
-          //news = value.name
-          //nombre= value.name
-        })
-      return (
-
-        <TouchableOpacity
-          key={i}
-          style={{
-            backgroundColor: '#2c3e50',
-            flex: 1,
-            //borderRadius: 25,
-            flexDirection: 'row',
-            margin: 10,
-          }}
-          onPress={() => { console.log(nombre); }}
-        >
-          <View style={{ flex: 1 }}>
-            <Text style={[styles.txtIcono, { fontSize: 14, padding: 30 }]}>
-              
-            </Text>
-
-            <Text
-              style={[
-                styles.txtIcono,
-                { color: '#95a5a6', fontSize: 14, paddingTop: 7 },
-              ]}>
-              {news.episode}
-            </Text>
-          </View>
-        </TouchableOpacity>
-      );
-      // console.log(i)
-    });
-  }
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView>
         <View style={styles.header}>
-          <Icon
-            type="material-community"
-            name="keyboard-backspace"
-            size={30}
-            color="black"
-            style={styles.iconos}
-            onPress={() => navigation.goBack()}
-          />
+          <View style={{
+            alignSelf: "flex-start", marginLeft: 10, marginBottom: -20, padding: 5, marginTop: 5
+            , borderRadius: 50 / 2
+          }}>
+            <Icon
+              type="material-community"
+              name="keyboard-backspace"
+              size={30}
+              color='#3498db'
+              onPress={() => navigation.goBack()}
+            />
+          </View>
+          <Image source={require("../assets/rickandmortylogo.png")} style={{ width: "80%", height: "80%" }} resizeMode='contain' />
+
+                {/* <Icon
+                  type="material-community"
+                  name="keyboard-backspace"
+                  size={30}
+                  color="black"
+                  style={styles.iconos}
+                  onPress={() => navigation.goBack()}
+                /> */}
         </View>
         <View style={styles.infoPersonaje}>
           <Text style={styles.tituloNombre}>{data.name}</Text>
@@ -229,20 +199,20 @@ const [tt, setTt] = useState([]) */
             renderItem={renderItem}
             keyExtractor={id => id.episode}
           /> */}
-         <FlatList
-          data={episodios}
-          keyExtractor={item => item.id}
-          renderItem={
-            ({ item, index }) => (
-              <EpisodiosPersonajes
+          <FlatList
+            data={episodios}
+            keyExtractor={item => item.id}
+            renderItem={
+              ({ item, index }) => (
+                <EpisodiosPersonajes
                   item={item}
                   navigation={navigation}
-                  //select={item.select}
-                  //onPress={() => this.changeSelect(index, item.select)}
-              />)
-          }
-         />
-  {/* {episodiosPersonaje()} */}
+                //select={item.select}
+                //onPress={() => this.changeSelect(index, item.select)}
+                />)
+            }
+          />
+          {/* {episodiosPersonaje()} */}
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -266,9 +236,14 @@ const [tt, setTt] = useState([]) */
 const styles = StyleSheet.create({
   header: {
     height: hp('11%'),
-    padding: 10,
-    alignItems: 'flex-start',
-    paddingLeft: 30,
+    //padding: 10,
+    //alignItems: 'flex-start',
+    paddingLeft: 10,
+    paddingTop: 10,
+    flex: 0.15,
+    //padding: 10,
+    justifyContent: "center",
+    alignItems: "center"
   },
   iconos: {
     backgroundColor: '#3498db',

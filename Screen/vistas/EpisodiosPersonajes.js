@@ -9,7 +9,7 @@ export default function EpisodiosPersonajes({navigation, item }) {
         fetch(item)
         .then((value)=> value.json())
         .then(value=>{
-            console.log("DENTRO DE EPISODIOS PERSONAJES SE PASA ->",value);
+            //console.log("DENTRO DE EPISODIOS PERSONAJES SE PASA ->",value);
             setEpisode(value)
             setCharacter(value.characters)
         })

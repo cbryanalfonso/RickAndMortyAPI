@@ -14,7 +14,7 @@ export default function Location({navigation}){
                 setURLNEXT(value.info)
                 setData(value.results)
             })
-    }, [])
+    }, [URL])
 
     const renderItem = ({ item }) => (
         <LocationFlatList navigation={navigation} item={item} />

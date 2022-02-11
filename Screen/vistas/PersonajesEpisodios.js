@@ -11,7 +11,7 @@ export default function PersonajesEpisodios({item, navigation}) {
   const [location, setLocation] = useState([]);
   const [firstEpisode, setFirstEpisode] = useState([]);
   useEffect(() => {
-    //console.log(item);
+    //console.log(item); 
     fetch(item)
       .then(value => value.json())
       .then(value => {
@@ -38,9 +38,9 @@ export default function PersonajesEpisodios({item, navigation}) {
         margin: 10,
       }}
       onPress={() => {
-        //console.log(item.url)
+        //console.log(item)
         //PASANDO PARAMETOS A PERSONAJE INDIVIUDAL, PARA QUE DE ESTA MANERA SE PUEDA CONSULTAR DE FORMA DETALLLADA AL PERSONAJE.
-        // navigation.navigate('PersonajeIndividual', { item: item.url })
+         navigation.navigate('PersonajeIndividual', { item: item })
       }}>
       <View style={{flex: 1, backgroundColor: 'white'}}>
         <Image
